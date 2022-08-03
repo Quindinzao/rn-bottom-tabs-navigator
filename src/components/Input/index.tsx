@@ -1,12 +1,12 @@
 // External libraries
 import React from 'react'
-import { KeyboardTypeOptions, TextInput, TextInputProps } from 'react-native'
+import { KeyboardTypeOptions, TextInputProps } from 'react-native'
+import { useTheme } from 'styled-components/native'
 
 // Styled
-import styles from './styles'
-import dark from '../../styles/themes/dark'
+import styles, { InputContainer } from './styles'
 
-interface PrimaryInputProps extends TextInputProps {
+interface InputProps extends TextInputProps {
   value?: string
   onChangeText?: (event: string) => void
   placeholder?: string
@@ -16,7 +16,7 @@ interface PrimaryInputProps extends TextInputProps {
   secureTextEntry?: boolean
 }
 
-const PrimaryInput: React.FC<PrimaryInputProps> = ({
+const Input: React.FC<InputProps> = ({
   value,
   onChangeText,
   placeholder,
@@ -25,13 +25,14 @@ const PrimaryInput: React.FC<PrimaryInputProps> = ({
   focusable,
   secureTextEntry,
 }) => {
+  const { colors } = useTheme()
   return (
-    <TextInput
+    <InputContainer
       style={styles.inputContainer}
       value={value}
       onChangeText={onChangeText}
       placeholder={placeholder}
-      placeholderTextColor={dark.colors.default}
+      placeholderTextColor={colors.default}
       keyboardType={keyboardType ? keyboardType : 'default'}
       autoCapitalize={autoCapitalize ? autoCapitalize : 'sentences'}
       focusable={focusable}
@@ -40,4 +41,4 @@ const PrimaryInput: React.FC<PrimaryInputProps> = ({
   )
 }
 
-export default PrimaryInput
+export default Input

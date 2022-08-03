@@ -1,15 +1,16 @@
 // External libraries
 import React, { ReactNode } from 'react'
-import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native'
+import { TouchableOpacityProps } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+import { useTheme } from 'styled-components/native'
 
 // Styles
-import styles from './styles'
-import dark from '../../styles/themes/dark'
+import styles, { TouchableContainer, TouchableText } from './styles'
 
 interface PrimaryTouchableProps extends TouchableOpacityProps {
   children?: ReactNode
-  title?: string
+  title: string
+  optionType: 'primary' | 'default'
   opacity?: number
   onPress?: () => void
 }
@@ -17,23 +18,30 @@ interface PrimaryTouchableProps extends TouchableOpacityProps {
 const PrimaryTouchable: React.FC<PrimaryTouchableProps> = ({
   children,
   title,
+  optionType,
   opacity,
   onPress,
 }) => {
+  const { colors } = useTheme()
   return (
-    <TouchableOpacity
+    <TouchableContainer
+      optionType={optionType}
       activeOpacity={opacity || 1}
-      style={styles.button}
+      style={styles.touchableContainer}
       onPress={onPress}>
-      <LinearGradient
-        style={styles.colorButton}
-        start={{ x: 1, y: 1 }}
-        end={{ x: 0, y: 0 }}
-        colors={[dark.colors.primary, dark.colors.secondary]}>
-        {children}
-        <Text style={styles.textButton}>{title}</Text>
-      </LinearGradient>
-    </TouchableOpacity>
+      {optionType === 'primary' ? (
+        <LinearGradient
+          style={styles.touchableColor}
+          start={{ x: 1, y: 1 }}
+          end={{ x: 0, y: 0 }}
+          colors={[colors.primary, colors.secondary]}>
+          {children}
+          <TouchableText optionType={optionType}>{title}</TouchableText>
+        </LinearGradient>
+      ) : (
+        <TouchableText optionType={optionType}>{title}</TouchableText>
+      )}
+    </TouchableContainer>
   )
 }
 

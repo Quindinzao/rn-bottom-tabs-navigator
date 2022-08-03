@@ -2,6 +2,7 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { useTheme } from 'styled-components/native'
 
 // Screens
 import List from '../../screens/List'
@@ -13,23 +14,25 @@ import Settings from '../../screens/Settings'
 // Components
 import MainNavigationButton from '../../components/MainNavigationButton'
 
-// Styled
-import dark from '../../styles/themes/dark'
-
 const { Navigator, Screen } = createBottomTabNavigator()
 
 const TabRoutes: React.FC = () => {
+  const { colors } = useTheme()
   return (
     <Navigator
       initialRouteName="List"
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        headerTintColor: colors.text,
+        headerStyle: {
+          backgroundColor: colors.backgroundColorItem,
+        },
         tabBarShowLabel: false,
-        tabBarActiveTintColor: dark.colors.primary,
-        tabBarInactiveTintColor: dark.colors.default,
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.default,
         tabBarStyle: {
           height: 56,
-          backgroundColor: dark.colors.backgroundColorTab,
+          backgroundColor: colors.backgroundColorItem,
           borderTopWidth: 0,
         },
       }}>

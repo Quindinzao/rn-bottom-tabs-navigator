@@ -1,27 +1,32 @@
 // External libraries
-import { StyleSheet } from 'react-native'
+import styled from 'styled-components/native'
 
-// Styled
-import dark from '../../styles/themes/dark'
+export const Container = styled.SafeAreaView`
+  flex: 1;
+  align-items: flex-start;
+  justify-content: space-between;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  padding: 0px;
 
-    padding: 24,
+  background-color: ${props => props.theme.colors.backgroundColor};
+`
 
-    backgroundColor: dark.colors.backgroundColor,
-  },
-  textContainer: {
-    marginBottom: 12,
+export const Row = styled.View`
+  width: 100%;
 
-    fontSize: 18,
-    fontWeight: '700',
-    letterSpacing: 2.5,
-    color: dark.colors.primary,
-  },
-})
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
 
-export default styles
+  margin-top: 24px;
+  padding-bottom: 10px;
+  padding-right: 24px;
+  padding-left: 24px;
+`
+
+export const TextContainer = styled.Text`
+  font-size: 16px;
+  font-family: 'Nunito-Medium';
+  letter-spacing: 2.5px;
+  color: ${props => props.theme.colors.text};
+`

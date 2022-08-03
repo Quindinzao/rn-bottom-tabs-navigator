@@ -1,18 +1,16 @@
 // External libraries
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { View } from 'react-native'
 
 // Components
-import PrimaryInput from '../../components/PrimaryInput'
+import Input from '../../components/Input'
 import PrimaryTouchable from '../../components/PrimaryTouchable'
-import SecondaryTouchable from '../../components/SecondaryTouchable'
 
 // Routes
 import { propsStack } from '../../routes/models'
 
 // Styles
-import styles from './styles'
+import { Container } from './styles'
 
 const SignUp: React.FC = () => {
   const navigation = useNavigation<propsStack>()
@@ -30,29 +28,29 @@ const SignUp: React.FC = () => {
   // }
 
   return (
-    <View style={styles.container}>
-      <PrimaryInput
+    <Container>
+      <Input
         value={username}
         onChangeText={(event: string) => setUsername(event)}
         placeholder="Username"
         keyboardType="default"
         autoCapitalize="words"
       />
-      <PrimaryInput
+      <Input
         value={email}
         onChangeText={(event: string) => setEmail(event)}
         placeholder="E-mail"
         keyboardType="email-address"
         autoCapitalize="none"
       />
-      <PrimaryInput
+      <Input
         value={password}
         onChangeText={(event: string) => setPassword(event)}
         placeholder="Password"
         autoCapitalize="none"
         secureTextEntry
       />
-      <PrimaryInput
+      <Input
         value={confirmPassword}
         onChangeText={(event: string) => setConfirmPassword(event)}
         placeholder="Confirm password"
@@ -61,15 +59,17 @@ const SignUp: React.FC = () => {
       />
       <PrimaryTouchable
         title="Sign Up"
+        optionType="primary"
         // onPress={() => handleSignUp()}
         opacity={0.7}
       />
-      <SecondaryTouchable
+      <PrimaryTouchable
         title="Sign In"
+        optionType="default"
         onPress={() => navigation.navigate('SignIn')}
         opacity={0.7}
       />
-    </View>
+    </Container>
   )
 }
 

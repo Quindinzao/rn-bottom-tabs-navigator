@@ -1,14 +1,14 @@
 import { DefaultTheme } from 'styled-components/native'
 
-const dark: DefaultTheme = {
-  title: 'dark',
+const light: DefaultTheme = {
+  title: 'light',
   colors: {
-    text: '#E3E3E3',
-    backgroundColor: '#222226',
-    backgroundColorItem: '#121214',
+    text: '#121214',
+    backgroundColor: '#E3E3E3',
+    backgroundColorItem: '#FFFFFF',
 
-    primary: '#61DBFB',
-    secondary: '#29768A',
+    primary: '#29768A',
+    secondary: '#61DBFB',
 
     default: '#9C9C9C',
   },
@@ -22,4 +22,4 @@ const dark: DefaultTheme = {
   },
 }
 
-export default dark
+export default light

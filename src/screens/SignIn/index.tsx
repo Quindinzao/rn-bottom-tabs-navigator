@@ -1,12 +1,10 @@
 // External libraries
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { View } from 'react-native'
 
 // Components
-import PrimaryInput from '../../components/PrimaryInput'
+import Input from '../../components/Input'
 import PrimaryTouchable from '../../components/PrimaryTouchable'
-import SecondaryTouchable from '../../components/SecondaryTouchable'
 
 // Routes
 import { propsStack } from '../../routes/models'
@@ -15,7 +13,7 @@ import { propsStack } from '../../routes/models'
 import { useAuth } from '../../contexts/Auth'
 
 // Styles
-import styles from './styles'
+import { Container } from './styles'
 
 const SignIn: React.FC = () => {
   const navigation = useNavigation<propsStack>()
@@ -23,15 +21,15 @@ const SignIn: React.FC = () => {
   const [password, setPassword] = useState('')
   const { signIn } = useAuth()
   return (
-    <View style={styles.container}>
-      <PrimaryInput
+    <Container>
+      <Input
         value={email}
         onChangeText={(event: string) => setEmail(event)}
         placeholder="E-mail"
         keyboardType="email-address"
         autoCapitalize="none"
       />
-      <PrimaryInput
+      <Input
         value={password}
         onChangeText={(event: string) => setPassword(event)}
         placeholder="Password"
@@ -40,15 +38,17 @@ const SignIn: React.FC = () => {
       />
       <PrimaryTouchable
         title="Sign In"
+        optionType="primary"
         onPress={() => signIn(email, password)}
         opacity={0.7}
       />
-      <SecondaryTouchable
+      <PrimaryTouchable
         title="Sign Up"
+        optionType="default"
         onPress={() => navigation.navigate('SignUp')}
         opacity={0.7}
       />
-    </View>
+    </Container>
   )
 }
 

@@ -6,12 +6,15 @@ import Routes from './routes'
 
 // Contexts
 import { AuthProvider } from './contexts/Auth'
+import { ThemeProvider as ThemeProviderContext } from './contexts/Theme'
 
 const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <Routes />
-    </AuthProvider>
+    <ThemeProviderContext>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    </ThemeProviderContext>
   )
 }
 
