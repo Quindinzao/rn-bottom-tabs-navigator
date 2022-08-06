@@ -44,7 +44,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (auth) {
       setAuthData(JSON.parse(auth) as AuthData)
     }
-    setIsLoading(false)
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
   }
 
   const signIn = async (email: string, password: string) => {

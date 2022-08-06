@@ -1,5 +1,6 @@
 // External libraries
 import React from 'react'
+import SplashScreen from 'react-native-splash-screen'
 import { NavigationContainer } from '@react-navigation/native'
 
 // Routes
@@ -10,14 +11,10 @@ import AuthStack from './stacks/auth.routes'
 import { useAuth } from '../contexts/Auth'
 
 const Routes: React.FC = () => {
-  const { authData } = useAuth()
-  // if (isLoading) {
-  //   return (
-  //     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-  //       <Text>aaaaaaaaaaaaaaaaaaaaaaaaaa</Text>
-  //     </View>
-  //   )
-  // }
+  const { authData, isLoading } = useAuth()
+  if (!isLoading) {
+    SplashScreen.hide()
+  }
   return (
     <NavigationContainer>
       {authData ? <AppStack /> : <AuthStack />}
