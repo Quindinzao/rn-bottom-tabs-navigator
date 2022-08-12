@@ -55,7 +55,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setAuthData(auth)
       AsyncStorage.setItem('@AuthData', JSON.stringify(auth))
     } catch (error: any) {
-      Alert.alert(error.message, ':/')
+      Alert.alert(':/', error.message)
     }
   }
 
